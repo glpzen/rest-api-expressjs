@@ -5,8 +5,20 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
+var wordRouter = require('./routes/word');
 
 var app = express();
+
+var checkToken = function (req, res, next) {
+    console.log('check-token');
+    if(req.headers['x-auth-token'] !== 'fa8426a0-8eaf-4d22-8e13-7c1b16a9370c'){
+        res.json('Unauthorized access!');
+    }
+    
+    next();
+}
+
+app.use(checkToken);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,6 +31,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/words', wordRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

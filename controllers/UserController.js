@@ -8,7 +8,7 @@ class UserController {
 
     getUsers(req, res) {
         this.user.all(function (err, result) {
-            res.send(result);
+            res.json(result);
         });
     }
 }
