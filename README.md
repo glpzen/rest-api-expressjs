@@ -1,4 +1,4 @@
-# mvc-expressjs
+# rest-api-expressjs
 
 Installation:
 * Clone this repo
