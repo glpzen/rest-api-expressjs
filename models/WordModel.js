@@ -5,14 +5,8 @@ class WordModel extends BaseModel {
 
     constructor() {
         super();
-        this.wordModel = this.sequelize.define('words', {
+        this.ormModel = this.sequelize.define('words', {
             text: Sequelize.STRING
-        });
-    }
-
-    getRows(callback) {
-        this.wordModel.findAll().then(projects => {
-            callback(1, projects);
         });
     }
 

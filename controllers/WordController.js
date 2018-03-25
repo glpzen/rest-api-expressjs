@@ -7,11 +7,11 @@ class WordController {
     }
 
     getRows(req, res) {
-        this.wordModel.getRows(function (err, result) {
-            res.json(result);
+        this.wordModel.ormModel.findAll().then(projects => {
+            res.json(projects);
         });
     }
-}
 
+}
 
 module.exports = WordController;
