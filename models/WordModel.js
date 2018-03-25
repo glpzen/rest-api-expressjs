@@ -1,18 +1,18 @@
 var BaseModel = require('./BaseModel');
+const Sequelize = require('sequelize');
 
 class WordModel extends BaseModel {
 
     constructor() {
-        super()
+        super();
+        this.wordModel = this.sequelize.define('words', {
+            text: Sequelize.STRING
+        });
     }
 
     getRows(callback) {
-        super.connection.query('SELECT * FROM words', function (err, rows, fields) {
-            if (err) {
-                callback(0, null)
-            }
-            callback(1, rows);
-
+        this.wordModel.findAll().then(projects => {
+            callback(1, projects);
         });
     }
 

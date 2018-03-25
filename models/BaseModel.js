@@ -1,21 +1,23 @@
 class BaseModel {
+
     constructor() {
         this.connectDb();
     }
 
     connectDb() {
-        var mysql = require('mysql');
-        this._connection = mysql;
-        this._connection = mysql.createConnection({
+        const Sequelize = require('sequelize');
+        this.sequelize = new Sequelize('my_db', 'root', 'root', {
             host: 'localhost',
-            user: 'root',
-            password: 'root',
-            database: 'my_db'
-        });
-    }
+            dialect: 'mysql',
+            operatorsAliases: false,
 
-    get connection() {
-        return this._connection;
+            pool: {
+                max: 5,
+                min: 0,
+                acquire: 30000,
+                idle: 10000
+            }
+        });
     }
 }
 

@@ -5,7 +5,7 @@ var WordController = require('../controllers/WordController');
 
 var wordController = new WordController();
 
-/* GET users */
+/* GET words */
 router.get('/', function (req, res) {
     wordController.getRows(req, res);
 });
