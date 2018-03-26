@@ -7,7 +7,11 @@ class WordController {
     }
 
     getRows(req, res) {
-        this.wordModel.ormModel.findAll().then(projects => {
+        this.wordModel.ormModel.findAll({
+            include: [
+                {model: this.wordModel.languageModel.ormModel, as: 'Language'}
+            ]
+        }).then(projects => {
             res.json(projects);
         });
     }

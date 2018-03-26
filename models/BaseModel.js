@@ -6,7 +6,7 @@ class BaseModel {
 
     connectDb() {
         const Sequelize = require('sequelize');
-        this.sequelize = new Sequelize('my_db', 'root', 'root', {
+        this.sequelize = new Sequelize('dictionary', 'root', 'root', {
             host: 'localhost',
             dialect: 'mysql',
             operatorsAliases: false,
