@@ -16,6 +16,12 @@ class WordController {
         });
     }
 
+    insertRows(req, res){
+        this.wordModel.ormModel.create(req.body).then(task => {
+            res.json(task);
+        });
+    }
+
 }
 
 module.exports = WordController;

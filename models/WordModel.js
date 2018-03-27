@@ -7,8 +7,28 @@ class WordModel extends BaseModel {
     constructor() {
         super();
         this.ormModel = this.sequelize.define('words', {
-            language_id: Sequelize.INTEGER,
-            text: Sequelize.STRING
+            language_id: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+                validate: {
+                    notEmpty: {
+                        msg: 'The language_id is required!'
+                    },
+                    isNumeric: {
+                        args: true,
+                        msg: "The language_id has to be numeric."
+                    }
+                }
+            },
+            text: {
+                type: Sequelize.STRING,
+                allowNull: false,
+                validate: {
+                    notEmpty: {
+                        msg: "The text is required!"
+                    }
+                }
+            }
         });
 
         this.setRelations();

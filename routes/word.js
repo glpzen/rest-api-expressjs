@@ -5,9 +5,13 @@ var WordController = require('../controllers/WordController');
 
 var wordController = new WordController();
 
-/* GET words */
+
 router.get('/', function (req, res) {
     wordController.getRows(req, res);
+});
+
+router.post('/', function(req, res){
+    wordController.insertRows(req, res);
 });
 
 module.exports = router;

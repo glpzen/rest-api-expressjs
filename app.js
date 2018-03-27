@@ -2,6 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 var logger = require('morgan');
 
 var wordRouter = require('./routes/word');
@@ -18,6 +19,8 @@ var checkToken = function (req, res, next) {
 }
 
 app.use(checkToken);
+
+app.use(bodyParser.json());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
