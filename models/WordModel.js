@@ -36,7 +36,27 @@ class WordModel extends BaseModel {
 
     setRelations() {
         this.languageModel = new LanguageModel();
+        this.synonymModel = this.sequelize.define('word_word', {
+            x_word_id: {
+                type: Sequelize.INTEGER
+            },
+            y_word_id: {
+                type: Sequelize.INTEGER
+            }
+        });
+
         this.ormModel.belongsTo(this.languageModel.ormModel, {as: 'Language', foreignKey: 'language_id'});
+        this.ormModel.belongsToMany(this.ormModel, {
+            as: 'SynonymX',
+            through: this.synonymModel,
+            foreignKey: 'x_word_id'
+        });
+        this.ormModel.belongsToMany(this.ormModel, {
+            as: 'SynonymY',
+            through: this.synonymModel,
+            foreignKey: 'y_word_id'
+        });
+
     }
 
 }

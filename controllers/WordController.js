@@ -9,14 +9,21 @@ class WordController {
     getRows(req, res) {
         this.wordModel.ormModel.findAll({
             include: [
-                {model: this.wordModel.languageModel.ormModel, as: 'Language'}
+                {
+                    model: this.wordModel.languageModel.ormModel,
+                    as: 'Language'
+                },
+                {
+                    model: this.wordModel.ormModel,
+                    as: 'SynonymX'
+                }
             ]
         }).then(projects => {
             res.json(projects);
         });
     }
 
-    insertRows(req, res){
+    insertRows(req, res) {
         this.wordModel.ormModel.create(req.body).then(task => {
             res.json(task);
         });
